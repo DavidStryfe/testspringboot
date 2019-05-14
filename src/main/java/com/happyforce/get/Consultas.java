@@ -12,7 +12,7 @@ public class Consultas {
     @RequestMapping("/gettest")
     @ResponseBody
     String home() {
-        return "HolaMundo GET Deploy 2";
+        return "HolaMundo GET Deploy 3";
     }
 
    /*@RequestMapping("/comentarios")
