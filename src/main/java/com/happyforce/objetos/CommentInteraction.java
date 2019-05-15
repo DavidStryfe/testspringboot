@@ -2,7 +2,7 @@ package com.happyforce.objetos;
 
 public class CommentInteraction {
 
-    private User user;
+    private String userName;
     private String kindInteraction; //like-dislike
 
 }
