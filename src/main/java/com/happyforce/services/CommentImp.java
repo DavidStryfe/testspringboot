@@ -16,8 +16,6 @@ public class CommentImp implements  CommentInt {
         List<Comment> listaComentarios = new LinkedList<>();
         //Connection conexion = conexionDao.crearConexion();
 
-
-
         Connection conexion = null;
 
         if (conexion == null) {
@@ -31,8 +29,6 @@ public class CommentImp implements  CommentInt {
             }
         }
 
-
-
         try {
             String selectSQL = "SELECT * FROM hf.comment";
             PreparedStatement stmt = (PreparedStatement) conexion
@@ -44,7 +40,8 @@ public class CommentImp implements  CommentInt {
                 String user = rs.getString("user");
                 java.sql.Timestamp date = rs.getTimestamp("date");
 
-                Comment comentario = new Comment(user, text, date);
+
+                Comment comentario = new Comment(idComment, user, text, date);
 
                 listaComentarios.add(comentario);
             }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+       <script src="js/hf.js"></script>
+       <style>
+      #loading {
+          background: url('https://gifimage.net/wp-content/uploads/2017/10/colorful-loader-gif-transparent-13.gif') no-repeat center center;
+          background-color:rgba(0,0,0,0.3);
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 9999999;
+      }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+        <br>
+        <h1>Introducir comentario</h1>
+        <div class="card">
+            <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12">
+                     <input type="text" id="comentario" name="comentario" class="form-control" placeholder="Introducir el texto del comentario" required>
+                     <br>
+                     <p>
+                        <a class="float-right btn text-white btn-primary" onclick="sendComment()"> <i class="fa fa-paper-plane"></i> Enviar</a>
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+        <br>
+        <h1>Comentarios</h1>
+        <div id="tabloncomentarios">
+            <!--<div class="card">
+                <div class="card-body">
+                   <div class="row">
+                      <div class="col-md-12">
+                         <p class="float-left text-primary"><strong>David Cabielles</strong><span class="text-dark"> - 08/05/2019 11:59</span></p>
+                         <div class="clearfix"></div>
+                         <p>Probando un comentario<p>
+                        <a class="float-right btn text-white btn-danger ml-2"> <i class="fa fa-thumbs-down"></i> No me gusta (12)</a>
+                        <a class="float-right btn text-white btn-success"> <i class="fa fa-thumbs-up"></i> Me gusta (27)</a>
+                         
+                      </div>
+                   </div>
+                </div>
+             </div>-->
+        </div>
+      </div>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+         <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+               <div class="modal-body">
+                  <b>
+                     <p id="cuerpomodal"></p>
+                  </b>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="loading"></div>
+   </body>
+</html>
