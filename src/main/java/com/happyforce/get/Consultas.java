@@ -39,7 +39,7 @@ public class Consultas {
 
     @RequestMapping("/comentarios")
     @ResponseBody
-    JSONObject comentarios() throws JSONException {
+    String comentarios() throws JSONException {
         JSONObject json = new JSONObject();
 
         List<Comment> listaComentarios = commentI.listaComentarios();
@@ -61,7 +61,7 @@ public class Consultas {
 
         json.put("comentarios", jsonComentarios);
 
-        return json;
+        return json.toString();
     }
 
 }
