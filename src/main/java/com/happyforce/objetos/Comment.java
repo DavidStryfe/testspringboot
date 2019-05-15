@@ -1,8 +1,10 @@
 package com.happyforce.objetos;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.List;
 
+@XmlRootElement(name = "comment")
 public class Comment {
 
     private String userName;
