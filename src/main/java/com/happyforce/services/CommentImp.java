@@ -41,7 +41,7 @@ public class CommentImp implements  CommentInt {
                 java.sql.Timestamp date = rs.getTimestamp("date");
 
 
-                Comment comentario = new Comment(idComment, user, text, date);
+                Comment comentario = new Comment(idComment, text, user, date);
 
                 listaComentarios.add(comentario);
             }

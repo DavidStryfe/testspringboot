@@ -78,10 +78,10 @@ function loadComments() {
             var comentariosString = JSON.stringify(data);
             var comentarios = JSON.parse(comentariosString);
 
-            if(comentarios["comentarios"].length > 0){
+            if(comentarios.length > 0){
     			clearBox("tabloncomentarios");
-    			for (var i = 0; i < comentarios["comentarios"].length; i++) {
-    				var comentarioActual = comentarios["comentarios"][i];
+    			for (var i = 0; i < comentarios.length; i++) {
+    				var comentarioActual = comentarios[i];
     				ponerComentarioEnTablon(comentarioActual);
     			};
     			$("#loading").hide();
@@ -116,7 +116,7 @@ function ponerComentarioEnTablon(jsonComentario){
 	var puser = document.createElement("p");
 	puser.setAttribute("class", "float-left text-primary");
 	var pstrong = document.createElement("strong");
-	pstrong.appendChild(document.createTextNode(jsonComentario["user"]));
+	pstrong.appendChild(document.createTextNode(jsonComentario["userName"]));
 	var pspan = document.createElement("span");
 	pspan.setAttribute("class", "text-dark");
 	pspan.appendChild(document.createTextNode(" - "+jsonComentario["date"]));
@@ -133,19 +133,21 @@ function ponerComentarioEnTablon(jsonComentario){
 
 	var a1pcomentario = document.createElement("a");
 	a1pcomentario.setAttribute("class", "float-right btn text-white btn-danger ml-2");
-	a1pcomentario.setAttribute("onclick","setLikeDislike('dislike','"+jsonComentario["idcomment"]+"')");
+	a1pcomentario.setAttribute("onclick","setLikeDislike('dislike','"+jsonComentario["idComment"]+"')");
+	a1pcomentario.setAttribute("disabled", "true"); //TEMPORAL
 	ia1 = document.createElement("i");
 	ia1.setAttribute("class", "fa fa-thumbs-down");
 	a1pcomentario.appendChild(ia1);
-	a1pcomentario.appendChild(document.createTextNode("No me gusta ("+jsonComentario["dislikes"]+")"));
+	a1pcomentario.appendChild(document.createTextNode("No me gusta ("+jsonComentario["numDislikes"]+")"));
 
 	var a2pcomentario = document.createElement("a");
 	a2pcomentario.setAttribute("class", "float-right btn text-white btn-success");
-	a2pcomentario.setAttribute("onclick","setLikeDislike('like','"+jsonComentario["idcomment"]+"')");
+	a2pcomentario.setAttribute("onclick","setLikeDislike('like','"+jsonComentario["idComment"]+"')");
+	a2pcomentario.setAttribute("disabled", "true"); //TEMPORAL
 	ia2 = document.createElement("i");
 	ia2.setAttribute("class", "fa fa-thumbs-down");
 	a2pcomentario.appendChild(ia2);
-	a2pcomentario.appendChild(document.createTextNode("Me gusta ("+jsonComentario["likes"]+")"));
+	a2pcomentario.appendChild(document.createTextNode("Me gusta ("+jsonComentario["numLikes"]+")"));
 
 	pbotones.appendChild(a1pcomentario);
 	pbotones.appendChild(a2pcomentario);
