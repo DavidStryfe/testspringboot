@@ -64,7 +64,42 @@ public class CommentImp implements  CommentInt {
     }
 
     @Override
-    public boolean insertComment(Comment comentario) {
-        return false;
+    public boolean insertComment(Comment comentario){
+        Connection conexion = null;
+
+        if (conexion == null) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                conexion = (Connection) DriverManager.getConnection(
+                        "jdbc:mysql://195.55.99.47:3306/hf", "root",
+                        "JoinSP1415.");
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            PreparedStatement stmt = (PreparedStatement) conexion
+                    .prepareStatement("INSERT INTO hf.comment(text,"
+                            + " user, date) " + "VALUES ('"
+                            + comentario.getText() + "', '" + comentario.getUserName()
+                            + "', '" + comentario.getDate() + "')");
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //conexionDao.cerrarConexion(conexion);
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            conexion = null;
+        }
+
+		return true;
+
     }
 }

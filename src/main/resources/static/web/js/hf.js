@@ -23,7 +23,7 @@ function sendComment() {
 	var jsonComentarioString = JSON.stringify(jsonComentario);
     $.ajax({
         type: "POST",
-        url: addresswsport + '/insercion/inserciones/insertarcomentario',
+        url: addresswsport + '/insertarcomentario',
         crossDomain: false,
         data: jsonComentarioString,
         contentType: "application/json",

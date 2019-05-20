@@ -29,6 +29,12 @@ public class Comment {
         this.date = date;
     }
 
+    public Comment(String text, String userName, Date date) {
+        this.text = text;
+        this.userName = userName;
+        this.date = date;
+    }
+
 
     /*web Comment(String userName, String text, Date date) {
         this.userName = userName;
