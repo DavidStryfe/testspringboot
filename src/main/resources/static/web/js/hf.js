@@ -52,6 +52,7 @@ function setLikeDislike(user, kind, comment){
         crossDomain: false,
         dataType:'json',
         success: function(data) {
+            loadComments();
         	//cambiar el texto
         	/*$("#loading").hide();
         	$("#comentario").val("");

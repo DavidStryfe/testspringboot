@@ -16,7 +16,7 @@ public class CommentInteactionImp implements CommentInteractionInt{
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = (Connection) DriverManager.getConnection(
+                conexion = DriverManager.getConnection(
                         "jdbc:mysql://195.55.99.47:3306/hf", "root",
                         "JoinSP1415.");
             } catch (ClassNotFoundException | SQLException e) {
@@ -95,7 +95,7 @@ public class CommentInteactionImp implements CommentInteractionInt{
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = (Connection) DriverManager.getConnection(
+                conexion = DriverManager.getConnection(
                         "jdbc:mysql://195.55.99.47:3306/hf", "root",
                         "JoinSP1415.");
             } catch (ClassNotFoundException | SQLException e) {
@@ -105,7 +105,7 @@ public class CommentInteactionImp implements CommentInteractionInt{
 
         try {
             PreparedStatement stmt = conexion
-                    .prepareStatement("INSERT INTO hf.like (user, comment, kind) VALUES('"+
+                    .prepareStatement("INSERT INTO hf.commentlike (user, comment, kind) VALUES('"+
                             like.getUserName()+"', '"+like.getIdComment()+"', '"+
                             like.getKindInteraction()+"') ON DUPLICATE KEY UPDATE kind='"+like.getKindInteraction()+"'");
 
