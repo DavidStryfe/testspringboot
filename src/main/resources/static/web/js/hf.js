@@ -46,6 +46,7 @@ function sendComment() {
 }
 
 function setLikeDislike(user, kind, comment){
+    $("#loading").show();
 	$.ajax({
         type: "POST",
         url: addresswsport + '/insertarinteraccioncomentario/'+user+'/'+comment+'/'+kind,
@@ -53,6 +54,7 @@ function setLikeDislike(user, kind, comment){
         dataType:'json',
         success: function(data) {
             loadComments();
+            $("#loading").show();
         	//cambiar el texto
         	/*$("#loading").hide();
         	$("#comentario").val("");
