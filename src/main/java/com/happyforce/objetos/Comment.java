@@ -13,15 +13,6 @@ public class Comment {
     private int numLikes;
     private int numDislikes;
 
-    public Comment(int idComment, String text, String userName, Date date, int numLikes, int numDislikes) {
-        this.idComment = idComment;
-        this.text = text;
-        this.userName = userName;
-        this.date = date;
-        this.numLikes = numLikes;
-        this.numDislikes = numDislikes;
-    }
-
     public Comment(int idComment, String text, String userName, Date date) {
         this.idComment = idComment;
         this.text = text;
@@ -34,13 +25,6 @@ public class Comment {
         this.userName = userName;
         this.date = date;
     }
-
-
-    /*web Comment(String userName, String text, Date date) {
-        this.userName = userName;
-        this.text = text;
-        this.date = date;
-    }*/
 
     public int getIdComment() {
         return idComment;

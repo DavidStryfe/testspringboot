@@ -1,9 +1,6 @@
 package com.happyforce.get;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.happyforce.objetos.Comment;
-import com.happyforce.objetos.CommentInteraction;
 import com.happyforce.services.CommentInt;
 import com.happyforce.services.CommentInteractionInt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,7 +49,7 @@ public class Consultas {
         List<MediaType> medias = new ArrayList<>();
         medias.add(MediaType.ALL);
         responseHeaders.setAccept(medias);
-        return new ResponseEntity<List<Comment>>(listaComentarios, responseHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(listaComentarios, responseHeaders, HttpStatus.OK);
     }
 
 }

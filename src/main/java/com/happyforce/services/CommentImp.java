@@ -14,7 +14,6 @@ public class CommentImp implements  CommentInt {
     @Override
     public List<Comment> listaComentarios() {
         List<Comment> listaComentarios = new LinkedList<>();
-        //Connection conexion = conexionDao.crearConexion();
 
         Connection conexion = null;
 
@@ -31,9 +30,9 @@ public class CommentImp implements  CommentInt {
 
         try {
             String selectSQL = "SELECT * FROM hf.comment";
-            PreparedStatement stmt = (PreparedStatement) conexion
+            PreparedStatement stmt = conexion
                     .prepareStatement(selectSQL);
-            ResultSet rs = (ResultSet) stmt.executeQuery(selectSQL);
+            ResultSet rs = stmt.executeQuery(selectSQL);
             while (rs.next()) {
                 int idComment = rs.getInt("idcomment");
                 String text = rs.getString("text");
@@ -50,13 +49,11 @@ public class CommentImp implements  CommentInt {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            //conexionDao.cerrarConexion(conexion);
             try {
                 conexion.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            conexion = null;
         }
 
         return listaComentarios;
@@ -79,7 +76,7 @@ public class CommentImp implements  CommentInt {
         }
 
         try {
-            PreparedStatement stmt = (PreparedStatement) conexion
+            PreparedStatement stmt = conexion
                     .prepareStatement("INSERT INTO hf.comment(text,"
                             + " user, date) " + "VALUES ('"
                             + comentario.getText() + "', '" + comentario.getUserName()
@@ -90,13 +87,11 @@ public class CommentImp implements  CommentInt {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            //conexionDao.cerrarConexion(conexion);
             try {
                 conexion.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            conexion = null;
         }
 
 		return true;

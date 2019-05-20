@@ -9,6 +9,12 @@ public class CommentInteraction {
     private int idComment;
     private String kindInteraction;
 
+    public CommentInteraction(String userName, int idComment, String kindInteraction) {
+        this.userName = userName;
+        this.idComment = idComment;
+        this.kindInteraction = kindInteraction;
+    }
+
     public String getUserName() {
         return userName;
     }

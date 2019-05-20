@@ -2,10 +2,13 @@ package com.happyforce.post;
 
 
 import com.happyforce.objetos.Comment;
+import com.happyforce.objetos.CommentInteraction;
 import com.happyforce.services.CommentInt;
+import com.happyforce.services.CommentInteractionInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,21 +20,13 @@ import java.util.Map;
 @Controller
 public class Inserciones {
 
-   /*@Autowired
-    private HolaMundo hm;
-
-
-    @RequestMapping("/posttest")
-    @ResponseBody
-    String home() {
-        return hm.holamundo();
-    }*/
-
     @Autowired
     private CommentInt commentI;
 
+    @Autowired
+    private CommentInteractionInt commentInteractionI;
 
-    @RequestMapping(path="/insertarcomentario")
+    @RequestMapping(path = "/insertarcomentario")
     @ResponseBody
     boolean insertarComentario(@RequestBody Map<String, String> comentario) {
 
@@ -39,15 +34,25 @@ public class Inserciones {
         String user = comentario.get("user");
         java.sql.Timestamp date = new Timestamp(System.currentTimeMillis());
 
-        Comment comment= new Comment(text, user, date);
+        Comment comment = new Comment(text, user, date);
 
         boolean insertado = commentI.insertComment(comment);
 
         return insertado;
     }
 
-    /*@Autowired
-    private CommentInteraction commentInteractionI;*/
+    @RequestMapping(path = "/insertarinteraccioncomentario/{user}/{idcomment}/{kind}")
+    @ResponseBody
+    boolean insertarInteraccionComentario(
+            @PathVariable String user,
+            @PathVariable int idcomment,
+            @PathVariable String kind) {
+        CommentInteraction commentInteraction = new CommentInteraction(user, idcomment, kind);
+
+        boolean insertado = commentInteractionI.updateCommentInteractions(commentInteraction);
+
+        return insertado;
+    }
 
 
 }

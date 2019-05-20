@@ -27,9 +27,9 @@ public class CommentInteactionImp implements CommentInteractionInt{
         try {
             String selectSQL = "SELECT COUNT(*) as contador FROM commentlike WHERE comment = "
                     + idComment + " AND kind = 'like'";
-            PreparedStatement stmt = (PreparedStatement) conexion
+            PreparedStatement stmt = conexion
                     .prepareStatement(selectSQL);
-            ResultSet rs = (ResultSet) stmt.executeQuery(selectSQL);
+            ResultSet rs = stmt.executeQuery(selectSQL);
             while (rs.next()) {
                 numLikes = rs.getInt("contador");
             }
@@ -43,7 +43,6 @@ public class CommentInteactionImp implements CommentInteractionInt{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            conexion = null;
         }
 
         return numLikes;
@@ -68,9 +67,9 @@ public class CommentInteactionImp implements CommentInteractionInt{
         try {
             String selectSQL = "SELECT COUNT(*) as contador FROM commentlike WHERE comment = "
                     + idComment + " AND kind = 'dislike'";
-            PreparedStatement stmt = (PreparedStatement) conexion
+            PreparedStatement stmt = conexion
                     .prepareStatement(selectSQL);
-            ResultSet rs = (ResultSet) stmt.executeQuery(selectSQL);
+            ResultSet rs = stmt.executeQuery(selectSQL);
             while (rs.next()) {
                 numDislikes = rs.getInt("contador");
             }
@@ -84,7 +83,6 @@ public class CommentInteactionImp implements CommentInteractionInt{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            conexion = null;
         }
 
         return numDislikes;
@@ -92,6 +90,39 @@ public class CommentInteactionImp implements CommentInteractionInt{
 
     @Override
     public boolean updateCommentInteractions(CommentInteraction like) {
-        return false;
+        Connection conexion = null;
+
+        if (conexion == null) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                conexion = (Connection) DriverManager.getConnection(
+                        "jdbc:mysql://195.55.99.47:3306/hf", "root",
+                        "JoinSP1415.");
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            PreparedStatement stmt = conexion
+                    .prepareStatement("INSERT INTO hf.like (user, comment, kind) VALUES('"+
+                            like.getUserName()+"', '"+like.getIdComment()+"', '"+
+                            like.getKindInteraction()+"') ON DUPLICATE KEY UPDATE kind='"+like.getKindInteraction()+"'");
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+
     }
 }

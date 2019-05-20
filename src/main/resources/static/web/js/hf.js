@@ -45,10 +45,10 @@ function sendComment() {
     });
 }
 
-function setLikeDislike(kind, comment){
+function setLikeDislike(user, kind, comment){
 	$.ajax({
         type: "POST",
-        url: addresswsport + '/insercion/inserciones/actualizarlikes/'+comment+'/'+kind,
+        url: addresswsport + '/insertarinteraccioncomentario/'+user+'/'+comment+'/'+kind,
         crossDomain: false,
         dataType:'json',
         success: function(data) {
@@ -133,7 +133,7 @@ function ponerComentarioEnTablon(jsonComentario){
 
 	var a1pcomentario = document.createElement("a");
 	a1pcomentario.setAttribute("class", "float-right btn text-white btn-danger ml-2");
-	a1pcomentario.setAttribute("onclick","setLikeDislike('dislike','"+jsonComentario["idComment"]+"')");
+	a1pcomentario.setAttribute("onclick","setLikeDislike('Cabielles', 'dislike','"+jsonComentario["idComment"]+"')");
 	a1pcomentario.setAttribute("disabled", "true"); //TEMPORAL
 	ia1 = document.createElement("i");
 	ia1.setAttribute("class", "fa fa-thumbs-down");
@@ -142,7 +142,7 @@ function ponerComentarioEnTablon(jsonComentario){
 
 	var a2pcomentario = document.createElement("a");
 	a2pcomentario.setAttribute("class", "float-right btn text-white btn-success");
-	a2pcomentario.setAttribute("onclick","setLikeDislike('like','"+jsonComentario["idComment"]+"')");
+	a2pcomentario.setAttribute("onclick","setLikeDislike('Cabielles', 'like','"+jsonComentario["idComment"]+"')");
 	a2pcomentario.setAttribute("disabled", "true"); //TEMPORAL
 	ia2 = document.createElement("i");
 	ia2.setAttribute("class", "fa fa-thumbs-down");
