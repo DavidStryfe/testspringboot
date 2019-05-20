@@ -32,6 +32,7 @@ public class Inserciones {
 
 
     @RequestMapping(path="/insertarcomentario")
+    @ResponseBody
     boolean insertarComentario(@RequestBody Map<String, String> comentario) {
 
         String text = comentario.get("text");
