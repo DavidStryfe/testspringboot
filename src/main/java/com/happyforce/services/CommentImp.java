@@ -1,7 +1,6 @@
 package com.happyforce.services;
 
 import com.happyforce.objetos.Comment;
-import com.happyforce.objetos.CommentInteraction;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
